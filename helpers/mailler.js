@@ -9,11 +9,11 @@ const transporter = nodemailer.createTransport({
 });
  
 
-async function mailSend(username , otp){
+async function mailSend(username , otp , mail){
 
     await transporter.sendMail({
     from: "Signup-Login Test Exam OYA",
-    to: process.env.AUTH_MAIL,
+    to: mail,
     subject: "Signup-Login Test Exam OYA Verification Mail", 
     html: `<b>Hello ${username} , Your account verification code is ${otp}</b>`,  
   });

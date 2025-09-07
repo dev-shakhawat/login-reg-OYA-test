@@ -9,7 +9,7 @@ async function Login(req, res) {
 
         if (!user)  return res.status(404).send({ success: false  , message: "User not found"  });   // if user not found then return
 
-        const isValid = await argon.verify(user.password, password);   // check password 
+        const isValid = await argon.verify(user.password, password.trim());   // check password 
 
         if (!isValid) return res.status(401).send({ success: false  , message: "Invalid password"  });  // if password is not valid then return
 
