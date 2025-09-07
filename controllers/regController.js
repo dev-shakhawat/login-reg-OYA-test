@@ -40,7 +40,7 @@ async function Registration(req, res) {
         // hash password
         try {
 
-            const hash = await argon2.hash(password);
+            const hash = await argon2.hash(password.trim());
  
 
             // otp generate
@@ -51,7 +51,12 @@ async function Registration(req, res) {
 
         
             // create new user 
-            const user =  await userSchema.create({ username, email, number, password: hash })
+            const user =  await userSchema.create({ 
+                username: username.trim(), 
+                email: email.trim(), 
+                number: number.trim(), 
+                password: hash 
+            })
             
 
             if(user) return res.status(200).send({ success: true, user });
